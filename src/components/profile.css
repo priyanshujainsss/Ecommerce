@@ -1,0 +1,52 @@
+.file {
+  opacity: 1;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  cursor: pointer;
+}
+/* .file-input label {
+  display: block;
+  position: relative; 
+  width: 150px;
+  height: 150px;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+  object-fit: contain;
+} */
+.file-input img{
+  width: auto;
+  height: auto;
+  max-width: 300px;
+  max-height: 300px;
+  display: block;
+  position: relative; 
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+  
+}
+input:hover + label,
+input:focus + label {
+  transform: scale(1.02);
+}
+input:focus + label {
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
+}
