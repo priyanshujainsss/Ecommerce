@@ -1,8 +1,4 @@
-import { combineReducers, createStore } from "redux";
-import { isAuthReducer } from "./Reducer";
+import { createStore } from "redux";
+import rootReducer from "./rootreducer";
 
-const Reducer=combineReducers({
-    isAuthReducer:isAuthReducer
-})
-
-export const store=createStore(Reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+export const store=createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

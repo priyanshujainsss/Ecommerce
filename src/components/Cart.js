@@ -88,16 +88,16 @@ history.push("/placeOrder")
         {fsproducts.map((element) => {
           return (
             <div
-              className="card-body d-flex p-4 col-12 mb-2"
-              style={{ border: "1px solid black" }}
+              className="card-body row row-cols-1 row-cols-md-4  row-cols-sm-2 p-4 mb-2"
+              style={{ border: "1px solid black"}}
             >
-              <div className="col-4">
+              <div className="col-md-4">
                 <img
                   src={element.ProductImg}
                   style={{ height: "120px", width: "220px" }}
                 />
               </div>
-              <div className="col-4">
+              <div className="col-md-4">
                 <h5 className="card-title p-4  ">{element.ProductName}</h5>
                 <p>{element.ProductDesc}</p>
               </div>
@@ -137,21 +137,21 @@ history.push("/placeOrder")
       </div>
       {fsproducts.length >0 && 
 
-      <div className=" w-75 container mt-4 ">
+      <div className="container w-75 row-cols-1 row-cols-md-4  mt-4 mb-4 " >
         <div
-          className="card-body d-flex p-4 col-8 mb-2"
+          className="card-body d-flex p-4 col-12 mb-2"
           style={{ border: "1px solid black" }}
         >
-          <div className="col-4">
+          <div className="col-6">
             <h5 className="card-title p-4  ">Total Items</h5>
             <h5 className="card-title p-4  ">Total Prize</h5>
           </div>
-          <div className="col-4">
+          <div className="col-6">
             <h5 className="p-4">{quantity}</h5>
             <h5 className="p-4">{totalCost}</h5>
           </div>
         </div>
-        <button type="button" className="btn btn-primary" onClick={()=>handlePlaceOrder(totalCost)}>
+        <button type="button" className="btn btn-primary " onClick={()=>handlePlaceOrder(totalCost)}>
           Place Order
         </button>
       </div>

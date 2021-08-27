@@ -3,7 +3,11 @@ import { fs } from "./firebase";
 import OrderSummay from "./OrderSummay";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import { useParams } from "react-router-dom";
+import Notfound from "./Notfound";
+
 const Myorders = ({ userid }) => {
+  const {id}=useParams();
   const [orders, setorders] = useState([]);
   const [loader, setloader] = useState(true)
   const getOrdersList = async () => {
@@ -20,9 +24,13 @@ const Myorders = ({ userid }) => {
       console.log("error on fetching cart products", err);
     }
   };
-  useEffect(() => {
-    getOrdersList();
+  useEffect((props) => {
+    getOrdersList()
   }, []);
+
+  if(id!==userid){
+    return <Notfound />
+  }
   return (
     <div>
       <div className="container" style={{ maxWidth: "600px" }}>

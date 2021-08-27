@@ -4,20 +4,17 @@ import { auth } from "./firebase";
 import { Icon } from "react-icons-kit";
 import { shoppingCart } from "react-icons-kit/feather/shoppingCart";
 import { logout } from "./Redux/actions";
-import { isAuthReducer, initialState } from "./Redux/Reducer";
 import UserContext from "../UserContext";
-const Navbar = ({ user,show }) => {
-console.log(user)
-const [state, dispatch] = useReducer(isAuthReducer, initialState)
-const context = useContext(UserContext);
-console.log(context)
+const Navbar = ({ user, show }) => {
+  // console.log(user);
+
+  const context = useContext(UserContext);
+  // console.log(context);
   const history = useHistory();
   const handleLogout = () => {
     auth.signOut();
-    console.log(state)
-    dispatch(logout(false));
-    localStorage.removeItem("isAuth")
-     window.location.replace("/login")
+
+    window.location.replace("/login");
   };
   // if(context){
 
@@ -26,46 +23,55 @@ console.log(context)
   //   },8000)
   // }
   return (
-    <div>
-<nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div style={{maxHeight:"150px", display:"inline"}}>
+      <nav className="navbar navbar-expand-sm navbar-light bg-light" >
         <div className="container-fluid">
-         
           <a className="navbar-brand" href="/">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS84t_rsNaIs7cqCPWKOooNePksXX8QwTT4og&usqp=CAU" style={{    width: "65px",
-    height: "43px",
-    // padding: "2px",
-    // // marginTop: "-10px",
-    // marginLeft: "27px",
-    // marginRight:"-10px"
-}}/>
+            <img
+              src="https://www.logopik.com/wp-content/uploads/edd/2018/07/Ecommerce-Logo-Vector.png"
+              style={{
+                width: "75px",
+                // height: "43px",
+                maxHeight:"40px"
+                // padding: "2px",
+                // // marginTop: "-10px",
+                // marginLeft: "27px",
+                // marginRight:"-10px"
+              }}
+            />
           </a>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler navbar-toggler-right "
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             // aria-controls="navbarSupportedContent"
             // aria-expanded="false"
             // aria-label="Toggle navigation"
+            style={{marginTop:"-20px"}}
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" style={{marginTop:"-4px"}} ></span>
           </button>
-          <div className="collapse navbar-collapse bg-dark  " id="navbarSupportedContent" style={{zIndex:"0", justifyContent:"flex-end"}} >
+          <div
+            className="collapse navbar-collapse bg-dark"
+            id="navbarSupportedContent"
+            style={{ zIndex: "1", justifyContent: "flex-end" }} 
+          >
             {user && show ? (
               <>
-              <div className="mx-2">
+                <div className="mx-2">
                   <Link to="/">Home</Link>
                 </div>
                 <div className="mx-2">
-                  <Link to="/profile" >{user}</Link>
+                  <Link to="/profile">{user}</Link>
                 </div>
                 <div className="mx-2">
-                  <Link to={`/myorders/${context.Id}`} >My Orders</Link>
+                  <Link to={`/myorders/${context.Id}`}>My Orders</Link>
                 </div>
                 <div className="mx-2">
-                  <Link to="/cart" >
+                  <Link to="/cart">
                     {/* <p>item</p> */}
-                  <Icon icon={shoppingCart}></Icon>
+                    <Icon icon={shoppingCart}></Icon>
                   </Link>
                 </div>
                 <div className="mx-2">
@@ -98,7 +104,6 @@ console.log(context)
               </>
             )}
           </div>
-
         </div>
       </nav>
     </div>
@@ -106,29 +111,6 @@ console.log(context)
 };
 
 export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from 'react'
 

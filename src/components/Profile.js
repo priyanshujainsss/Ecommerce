@@ -131,12 +131,10 @@ const Profile = ({ user }) => {
       )}
       {context && (
         <div
-          className="container w-75 mt-5 profile"
-          style={{ display: "flex", justifyContent: "center" }}
+          className="container  mt-5 profile"
+          style={{ display: "flex", justifyContent: "center"}}
         >
-         
             <form
-              style={{ border: "1px solid black" }}
               onSubmit={handleProfileSubmit}
             >
               {/* <input type="file" className="my-file" onChange={handleImg} /> */}
@@ -152,8 +150,8 @@ const Profile = ({ user }) => {
                   </label>
                </div>
                {/* profile image div end */}
-              <div style={{ padding: "25px" }}>
-                <div className="form mb-2">
+              <div>
+                <div className="form mb-2" style={{display:"contents"}}>
                   <label htmlFor="floatingInput">Full Name</label>
                   <input
                     type="text"
@@ -166,7 +164,7 @@ const Profile = ({ user }) => {
                   />
                 </div>
                 <div className="form mb-2">
-                  <label htmlFor="floatingInput">Email Id</label>
+                  <label htmlFor="floatingInput"  >Email Id</label>
                   <input
                     type="email"
                     className="form-control"

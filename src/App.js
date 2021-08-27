@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useReducer } from "react";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   BrowserRouter,
   Switch,
@@ -18,18 +18,15 @@ import Notfound from "./components/Notfound";
 import PlaceOrder from "./components/PlaceOrder";
 import Profile from "./components/Profile";
 import { isAuth } from "./components/Redux/actions";
-import { isAuthReducer, initialState } from "./components/Redux/Reducer";
-import { store } from "./components/Redux/store";
 import Signup from "./components/Signup";
 import ProtectedRoute from "./ProtectedRoute";
 import UserContext from "./UserContext";
 
 const App = () => {
-  const [state, dispatch] = useReducer(isAuthReducer, initialState);
+  const isauth = useSelector(state => state.isAuthReducer)
+const dispatch = useDispatch();
   const [user, setuser] = useState(null);
-  console.log(state);
-  // const [isAuth, setisAuth] = useState(false);
-  const [userid, setuserid] = useState(null);
+   const [userid, setuserid] = useState(null);
   const [useremail, setuseremail] = useState(null);
   const [shownav, setshownav] = useState(false)
   const history = useHistory();
@@ -45,7 +42,6 @@ const App = () => {
               setuseremail(snapshot.data());
               setshownav(true)
               setuser(snapshot.data().FullName);
-              localStorage.setItem("isAuth", true);
             })
             .catch((err) => {
               console.log("unable to retrieve", err);
@@ -61,12 +57,16 @@ const App = () => {
   };
   // console.log(user)
   useEffect(() => {
-    // dispatch(isAuth())
+    dispatch(isAuth())
     getuserState();
   }, []);
 
   return (
     <BrowserRouter>
+    {/* {
+    console.log(isauth)
+
+    } */}
       <UserContext.Provider value={useremail}>
         <Navbar user={user} show={shownav}/>
         <Switch>
@@ -84,30 +84,35 @@ const App = () => {
           <ProtectedRoute
             path="/cart"
             component={Cart}
-            isAuth={localStorage.getItem("isAuth")}
+            // isAuth={localStorage.getItem("isAuth")}
+            isAuth={user}
             userid={userid}
           />
           <ProtectedRoute
             path="/profile"
             component={Profile}
-            isAuth={localStorage.getItem("isAuth")}
+            // isAuth={localStorage.getItem("isAuth")}
+            isAuth={user}
             user={useremail}
           />
           <ProtectedRoute
             path="/addproduct"
             component={Addproduct}
-            isAuth={localStorage.getItem("isAuth")}
+            // isAuth={localStorage.getItem("isAuth")}
+            isAuth={user}
           />
           <ProtectedRoute
             path="/placeorder"
             component={PlaceOrder}
-            isAuth={localStorage.getItem("isAuth")}
+            // isAuth={localStorage.getItem("isAuth")}
+            isAuth={user}
             userid={userid}
           />
           <ProtectedRoute
             path="/myorders/:id"
             component={Myorders}
-            isAuth={localStorage.getItem("isAuth")}
+            // isAuth={localStorage.getItem("isAuth")}
+            isAuth={user}
             userid={userid}
           />
           <Route component={Notfound} />

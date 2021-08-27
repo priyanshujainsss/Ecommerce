@@ -13,10 +13,10 @@ const Products = () => {
       for (var snap of products.docs) {
         var data = snap.data();
         //   data.ID=snap.id;
-        console.log(data);
+        // console.log(data);
         productArray.push({ ...data });
       }
-      console.log(productArray);
+      // console.log(productArray);
       setProducts(productArray);
     };
     getproducts();

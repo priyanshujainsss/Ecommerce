@@ -5,9 +5,12 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { login } from "./Redux/actions";
 import { isAuthReducer, initialState } from "./Redux/Reducer";
-
+import { useDispatch, useSelector } from "react-redux";
 function Login({ user }) {
-  const [state, dispatch] = useReducer(isAuthReducer,initialState)
+
+  const authdata=useSelector((state=>state.isAuthReducer))
+const dispatch=useDispatch()
+  
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [successmsg, setsuccessmsg] = useState("");
@@ -20,8 +23,10 @@ function Login({ user }) {
       const response=await auth.signInWithEmailAndPassword(email,password)
       seterrmsg("");
       setsuccessmsg("Successfull Login, Now, you are Redirecting to Home page");
-      await dispatch(login(true))
-      console.log(state);
+      dispatch(login(true))
+    //  dispatch(userData({"name":"user","age":"9080"}))
+      // console.log(state);
+      // console.log(disp)
       // setTimeout(()=>{
       //   history.push("/")
       // },1500)
