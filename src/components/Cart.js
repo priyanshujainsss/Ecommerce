@@ -36,7 +36,8 @@ const Cart = ({ userid }) => {
   };
 
   useEffect(() => {
-    getCartProducts();  
+    getCartProducts(); 
+     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, []);
 
   const handleRemove = async (id) => {
@@ -86,14 +87,17 @@ history.push("/placeOrder")
         {(fsproducts.length < 1 && !loader) &&<h4>Cart is Empty</h4>}
 
         {fsproducts.map((element) => {
+
           return (
             <div
+            key={element.Id}
               className="card-body row row-cols-1 row-cols-md-4  row-cols-sm-2 p-4 mb-2"
               style={{ border: "1px solid black"}}
             >
               <div className="col-md-4">
                 <img
                   src={element.ProductImg}
+                  alt={element.ProductName}
                   style={{ height: "120px", width: "220px" }}
                 />
               </div>

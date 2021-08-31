@@ -1,11 +1,10 @@
-import React, { useEffect, useState, createContext, useReducer } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import {  useDispatch } from "react-redux";
 import {
   BrowserRouter,
   Switch,
   Route,
-  Redirect,
-  useHistory,
 } from "react-router-dom";
 import Addproduct from "./components/addproduct";
 import Cart from "./components/Cart";
@@ -17,31 +16,33 @@ import Navbar from "./components/Navbar";
 import Notfound from "./components/Notfound";
 import PlaceOrder from "./components/PlaceOrder";
 import Profile from "./components/Profile";
-import { isAuth } from "./components/Redux/actions";
+import {login } from "./components/Redux/actions";
 import Signup from "./components/Signup";
 import ProtectedRoute from "./ProtectedRoute";
 import UserContext from "./UserContext";
-
 const App = () => {
   const isauth = useSelector(state => state.isAuthReducer)
-const dispatch = useDispatch();
+  const  dispatch = useDispatch();
   const [user, setuser] = useState(null);
    const [userid, setuserid] = useState(null);
   const [useremail, setuseremail] = useState(null);
-  const [shownav, setshownav] = useState(false)
-  const history = useHistory();
+  const [shownav, setshownav] = useState(false);
+  
   const getuserState = async () => {
     try {
-      auth.onAuthStateChanged(function (user) {
+     auth.onAuthStateChanged(function (user) {
         if (user) {
+          dispatch(login(true))
           fs.collection("users")
             .doc(user.uid)
             .get()
             .then((snapshot) => {
               setuserid(user.uid);
               setuseremail(snapshot.data());
-              setshownav(true)
-              setuser(snapshot.data().FullName);
+              setshownav(true);
+              setuser(snapshot.data());
+              console.log("appjs")
+    
             })
             .catch((err) => {
               console.log("unable to retrieve", err);
@@ -57,62 +58,60 @@ const dispatch = useDispatch();
   };
   // console.log(user)
   useEffect(() => {
-    dispatch(isAuth())
     getuserState();
+
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  
 
   return (
     <BrowserRouter>
-    {/* {
-    console.log(isauth)
-
-    } */}
+    {
+      console.log(isauth)
+    }
       <UserContext.Provider value={useremail}>
         <Navbar user={user} show={shownav}/>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={() => <Login user={user} />} />
-          <Route path="/signup" component={() => <Signup user={user} />} />
-          {/* <Route path="/add-product" component={Addproduct} />    */}
-          {/* <Route path="/cart" 
-        component={()=><Cart userid={userid} />} 
-        // render={()=>{
-          //   return <Cart  userid={userid} />
-          // }}
-        /> */}
-
+          <Route exact path="/login" component={() => <Login user={user} />} />
+          <Route exact path="/signup" component={() => <Signup user={user} />} />
+         {/* <Route exact path="/cart" component={()=><Cart userid={userid} />} /> */}
+       
           <ProtectedRoute
             path="/cart"
             component={Cart}
-            // isAuth={localStorage.getItem("isAuth")}
-            isAuth={user}
+            // isAuth={user}
+            isAuth={isauth}
             userid={userid}
           />
           <ProtectedRoute
+
             path="/profile"
             component={Profile}
-            // isAuth={localStorage.getItem("isAuth")}
-            isAuth={user}
+            // isAuth={user}
+            isAuth={isauth}
             user={useremail}
           />
           <ProtectedRoute
+ 
             path="/addproduct"
             component={Addproduct}
-            // isAuth={localStorage.getItem("isAuth")}
-            isAuth={user}
+            isAuth={isauth}
+            // isAuth={user}
           />
           <ProtectedRoute
-            path="/placeorder"
+             path="/placeorder"
             component={PlaceOrder}
-            // isAuth={localStorage.getItem("isAuth")}
-            isAuth={user}
+            isAuth={isauth}
+            // isAuth={user}
             userid={userid}
           />
           <ProtectedRoute
             path="/myorders/:id"
             component={Myorders}
-            // isAuth={localStorage.getItem("isAuth")}
-            isAuth={user}
+            isAuth={isauth}
+            // isAuth={user}
             userid={userid}
           />
           <Route component={Notfound} />

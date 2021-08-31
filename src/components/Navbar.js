@@ -139,7 +139,7 @@ const Navbar = ({user,show}) => {
   return (
     <div>
       <div className="navbar1" >
-      <a href="/" className="logo"><img  className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUVSxbETkWutHOuav5vb4dZ5VGD1ERFXZcIXVl7WWlkrU0Sc2EvsMKYURuV_eaz_cTgik&usqp=CAU" /></a>
+      <a href="/" className="logo"><img  className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUVSxbETkWutHOuav5vb4dZ5VGD1ERFXZcIXVl7WWlkrU0Sc2EvsMKYURuV_eaz_cTgik&usqp=CAU" alt="logo"/></a>
 
        <ul className={isMobile ? "nav-links-mobile":"nav-links"} 
        onClick={()=>setisMobile(false)}>
@@ -153,7 +153,7 @@ const Navbar = ({user,show}) => {
           <li>Profile</li>
         </Link>
         <Link to="/cart" className="links" >
-          <li><i class=" material-icons">shopping_cart</i></li>
+          <li><i className=" material-icons">shopping_cart</i></li>
         </Link>
         <Link to={`/myorders/${context.Id}`} className="links" >
           <li>My Orders</li>
@@ -174,8 +174,8 @@ const Navbar = ({user,show}) => {
                    }
        
        </ul>
-       <button className="mobile-menu-icon" onClick={()=>setisMobile(!isMobile)}> 
-        {isMobile ?(<i class=" material-icons">clear</i>):(<i className="material-icons">menu</i>)}
+       <button className="mobile-menu-icon"  onClick={()=>setisMobile(!isMobile)}> 
+        {isMobile ?(<i className=" material-icons" >clear</i>):(<i className="material-icons">menu</i>)}
        </button>
        
       </div>

@@ -26,6 +26,7 @@ const Myorders = ({ userid }) => {
   };
   useEffect((props) => {
     getOrdersList()
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if(id!==userid){

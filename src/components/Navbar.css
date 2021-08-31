@@ -9,8 +9,9 @@
     justify-content: space-around;
     align-items: center;
     height: 75px;
-    background-color: #F1F1F1;
+    /* background-color: #F1F1F1; */
     color: #D11F1F;
+    background-color:#212529
 
 }
 .logo{
@@ -27,12 +28,11 @@
 }
 .links{
     text-decoration: none;
-    color: #D11F1F;
+    color:white;
     font-size: 18px;
    padding: 10px 20px;
    margin: 0px 5px;
    cursor: pointer;
-
    border-radius: 10px;
 
 }
@@ -57,7 +57,7 @@
         position: absolute;
         display: block;
         list-style: none;
-        background-color: #78d17f;
+        background-color: #121153;
         left: 0;
         top:75px;
         transition: all 0.5s ease-in-out;
@@ -80,11 +80,15 @@
         position: absolute;
         font-size: 35px;
         color: #D11F1F;
-       
        border:none;
        outline: none;
        top:10px;
+       background: transparent;
+
        right: 25px;
+   }
+   .mobile-menu-icon:focus{
+       background: transparent;
    }
 
    
