@@ -46,7 +46,7 @@ if(user){
 }
 
   return (
-    <div className="center container" style={{ maxWidth: "500px", marginTop: "70px" }}>
+    <div className="center container" style={{ maxWidth: "500px", marginTop: "130px" }}>
       <h4>Login</h4>
       {successmsg &&
       <div style={{ top:"45%",left:"45%",overflow:"visible",position:"fixed",backfaceVisibility:"hidden"

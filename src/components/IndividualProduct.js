@@ -48,7 +48,7 @@ if(user){
                   {product.description}
                 </p>
                 <h4>${product.prize}</h4>
-                <button type="button" className="btn btn-primary" onClick={()=>handleAddToCart(product)} >Add To Cart</button>
+                <button type="button" className="btn btn-primary" onClick={()=>handleAddToCart(product)} style={{height:"auto"}}>Add To Cart</button>
               </div>
             </div>
         </div>)

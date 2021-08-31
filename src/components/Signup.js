@@ -37,7 +37,7 @@ const Signup = ({user}) => {
     }
 
     return (
-        <div className="center container" style={{maxWidth:"500px"}}  >
+        <div className="center container" style={{ maxWidth: "500px", marginTop: "130px" }}  >
         <h4>Signup</h4>    
         {successmsg && <div>{successmsg}</div>}
         {errmsg && <div>{errmsg}</div>}
