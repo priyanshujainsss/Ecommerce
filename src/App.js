@@ -1,11 +1,9 @@
-import React, { useEffect, useState, createContext, useReducer } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import {  useDispatch } from "react-redux";
 import {
   BrowserRouter,
   Switch,
   Route,
-  Redirect,
-  useHistory,
 } from "react-router-dom";
 import Addproduct from "./components/addproduct";
 import Cart from "./components/Cart";
@@ -23,13 +21,12 @@ import ProtectedRoute from "./ProtectedRoute";
 import UserContext from "./UserContext";
 
 const App = () => {
-  const isauth = useSelector(state => state.isAuthReducer)
+  // const isauth = useSelector(state => state.isAuthReducer)
 const dispatch = useDispatch();
   const [user, setuser] = useState(null);
    const [userid, setuserid] = useState(null);
   const [useremail, setuseremail] = useState(null);
   const [shownav, setshownav] = useState(false)
-  const history = useHistory();
   const getuserState = async () => {
     try {
       auth.onAuthStateChanged(function (user) {
@@ -59,6 +56,7 @@ const dispatch = useDispatch();
   useEffect(() => {
     dispatch(isAuth())
     getuserState();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import { UserContext } from "../App";
-import {fs,auth} from './firebase';
+import React from "react";
+
+import {fs} from './firebase';
 const IndividualProduct = ({ products,user }) => {
   // console.log(products)
-  const history=useHistory()
-  const [addedProduct, setaddedProduct] = useState([]);
+  
+
   const handleAddToCart=(product)=>{
 //  console.log(product);
 //  console.log(user)
