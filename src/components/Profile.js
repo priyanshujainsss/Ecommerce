@@ -7,6 +7,8 @@ import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import "./profile.css";
+import { Icon } from "react-icons-kit";
+import { image } from "react-icons-kit/icomoon/image";
 // import { arrowUp } from "react-icons-kit/feather/arrowUp";
 const Profile = ({ user }) => {
   console.log(user)
@@ -29,10 +31,10 @@ const Profile = ({ user }) => {
 
   const updateProfile = async () => {
     try {
-       storage.ref(`userImage/${user.Id}`).put(pimage)
+       const uploadimage=storage.ref(`userImage/${user.Id}`).put(pimage)
         const url=await storage.ref("userImage").child(user.Id).getDownloadURL();
       console.log(url)
-      await fs.collection("users").doc(user.Id).update({
+      const data1 = await fs.collection("users").doc(user.Id).update({
         FullName: profile.name,
         Address: profile.address,
         Phone: profile.phone,
@@ -68,7 +70,7 @@ const Profile = ({ user }) => {
         // Convert size in bytes to kilo bytes
         const fileSize = (size / 1000).toFixed(2);
         // Set the text content
-        // const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+        const fileNameAndSize = `${fileName} - ${fileSize}KB`;
         // document.querySelector('.file-name').textContent = fileNameAndSize;
         console.log(file, fileName, fileSize);}
       });
@@ -94,7 +96,6 @@ const Profile = ({ user }) => {
         
        }
     }
-     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [profile, setprofile] = useState({
@@ -145,7 +146,7 @@ const Profile = ({ user }) => {
                   <input type="file" className="file" id="file" />
 
                     <label htmlFor="file" onClick={handleClick} id="label">
-                    <img src={imageurl} width="300" height="300" alt={"profile" }/>
+                    <img src={imageurl} width="300" height="300" />
                   </label>
                </div>
                {/* profile image div end */}

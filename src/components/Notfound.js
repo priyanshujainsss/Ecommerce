@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from './Navbar'
 
 const Notfound = () => {
     return (
@@ -10,7 +11,6 @@ const Notfound = () => {
             transform: "translate(-50%, -50%)",
             fontSize:"24px"}}>
                 <img src={"https://i.pinimg.com/originals/86/41/80/86418032b715698a4dfa6684b50c12af.gif"}
-                alt="not found"
                  maxWidth="300" maxHeight="250"
                  width="auto" height="400" 
                  />

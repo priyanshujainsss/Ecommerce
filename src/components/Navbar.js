@@ -139,7 +139,7 @@ const Navbar = ({user,show}) => {
   return (
     <div>
       <div className="navbar1" >
-      <a href="/" className="logo"><img  className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUVSxbETkWutHOuav5vb4dZ5VGD1ERFXZcIXVl7WWlkrU0Sc2EvsMKYURuV_eaz_cTgik&usqp=CAU" alt="logo"/></a>
+      <a href="/" className="logo"><img  className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUVSxbETkWutHOuav5vb4dZ5VGD1ERFXZcIXVl7WWlkrU0Sc2EvsMKYURuV_eaz_cTgik&usqp=CAU" /></a>
 
        <ul className={isMobile ? "nav-links-mobile":"nav-links"} 
        onClick={()=>setisMobile(false)}>

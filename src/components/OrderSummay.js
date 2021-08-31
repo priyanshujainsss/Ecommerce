@@ -24,7 +24,7 @@ const OrderSummay = ({orders}) => {
                       style={{ maxHeight: "50px", display: "flex", flexDirection: "row" }}
                     >
                          <div  className="col-5">
-                             <img src={order.ProductImg} width="40"style={{maxWidth:"40px"}} alt="product img" />
+                             <img src={order.ProductImg} width="40"style={{maxWidth:"40px"}} />
                           </div>
                       <p class="col-5">{order.ProductQty}</p>
                       <p class="col-5">{order.ProductPrize}</p>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {  useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import UserContext from "../UserContext";
 import { fs } from "./firebase";
 import Placeorderhome from "./Placeorderhome";
@@ -68,7 +68,6 @@ history.push("/")
 
   useEffect(() => {
     getCartValue();
-     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -82,7 +81,7 @@ history.push("/")
 {
     confirmModal&&
     <div class="modal-body container" style={{maxWidth:"400px"}}>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPrxtZpVkl56Ulv9ZM9iP62oasrxTfxXTwf_BxhxsLM4zd9lfNPjgO2kYhA-nO7WKSADQ&usqp=CAU" alt="order placed"/>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPrxtZpVkl56Ulv9ZM9iP62oasrxTfxXTwf_BxhxsLM4zd9lfNPjgO2kYhA-nO7WKSADQ&usqp=CAU"/>
     <h5 style={{display:"flex", flexDirection:"column",justifyContent:"center", marginLeft:"13%"}}>Order Placed</h5>
   </div>
 }

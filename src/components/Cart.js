@@ -36,8 +36,7 @@ const Cart = ({ userid }) => {
   };
 
   useEffect(() => {
-    getCartProducts(); 
-     // eslint-disable-next-line react-hooks/exhaustive-deps 
+    getCartProducts();  
   }, []);
 
   const handleRemove = async (id) => {
@@ -95,7 +94,6 @@ history.push("/placeOrder")
               <div className="col-md-4">
                 <img
                   src={element.ProductImg}
-                  alt={element.ProductName}
                   style={{ height: "120px", width: "220px" }}
                 />
               </div>
