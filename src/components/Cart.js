@@ -3,7 +3,10 @@ import { useHistory, withRouter } from "react-router-dom";
 import { fs } from "./firebase";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import { cartlength } from "./Redux/actions";
 const Cart = ({ userid }) => {
+  const dispatch = useDispatch();
   console.log(userid);
   const history=useHistory()
   const [fsproducts, setproducts] = useState([]);
@@ -13,6 +16,9 @@ const Cart = ({ userid }) => {
   const getCartProducts = async () => {
     try {
       const products = await fs.collection(`Cart ${userid}`).get();
+      console.log(products.docs.length)
+      dispatch(cartlength(products.docs.length))
+
       const ProductArray = [];
       let totalItems = 0;
       let totalPrize = 0;
@@ -26,7 +32,7 @@ const Cart = ({ userid }) => {
       }
       setTotalCost(totalPrize);
       setquantity(totalItems);
-      await setproducts(ProductArray);
+      setproducts(ProductArray);
       setloader(false)
       //   console.log(fsproducts)
       //   console.log(ProductArray);
@@ -111,6 +117,7 @@ history.push("/placeOrder")
                 </h5>
                 <div className="d-flex" style={{ maxHeight: "40px" }}>
                   <button
+                  disabled={element.ProductQty<=1 ? true :false}
                     className="btn btn-primary"
                     onClick={() => handleQty(element, element.ProductQty - 1)}
                     id="decrement"

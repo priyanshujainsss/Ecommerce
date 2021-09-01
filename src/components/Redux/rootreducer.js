@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import {isAuthReducer } from './Reducer';
+import {isAuthReducer,cartLengthReducer,userIdReducer } from './Reducer';
 
-const rootReducer=combineReducers({isAuthReducer});
+const rootReducer=combineReducers({isAuthReducer,cartLengthReducer,userIdReducer});
 export default rootReducer;

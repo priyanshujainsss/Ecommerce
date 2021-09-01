@@ -12,9 +12,11 @@ const Products = () => {
       const productArray = [];
       for (var snap of products.docs) {
         var data = snap.data();
+        // console.log("product id",snap.id)
+        var pid=snap.id
         //   data.ID=snap.id;
         // console.log(data);
-        productArray.push({ ...data });
+        productArray.push({ ...data,pid });
       }
       // console.log(productArray);
       setProducts(productArray);

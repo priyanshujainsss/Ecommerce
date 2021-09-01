@@ -12,7 +12,7 @@ const PlaceOrder = ({ userid}) => {
   const [payment, setpayment] = useState(false);
 const [value, setvalue] = useState("")
 const [confirmModal, setconfirmModal] = useState(false)
-const [enable, setenable] = useState(false)
+const [enable, setenable] = useState(false);
   const getCartValue = async () => {
     try {
       const Products = await fs.collection(`Cart ${userid}`).get();
@@ -63,7 +63,7 @@ const confirmOrder=()=>{
  clearCart();
  setTimeout(()=>{
 history.push("/")
- },3000)
+ },4000)
 }
 
   useEffect(() => {
@@ -76,18 +76,18 @@ history.push("/")
       {console.log(context)}
       {
           !confirmModal && 
-      <Placeorderhome handlePayment={handlePayment} payment={payment} value={value} confirmOrder={confirmOrder} totalCartValue={totalCartValue} enablebtn={enable} context={context} />
+      <Placeorderhome handlePayment={handlePayment} payment={payment} value={value} confirmOrder={confirmOrder} totalCartValue={totalCartValue} enablebtn={enable} pvalue={value} context={context} />
                }
 
 {
     confirmModal&&
     <div class="modal-body container" style={{maxWidth:"400px"}}>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPrxtZpVkl56Ulv9ZM9iP62oasrxTfxXTwf_BxhxsLM4zd9lfNPjgO2kYhA-nO7WKSADQ&usqp=CAU" alt="order placed"/>
+    <img src="https://www.teleentrega.net/assets/img/order-placed.gif" alt="order placed"/>
     <h5 style={{display:"flex", flexDirection:"column",justifyContent:"center", marginLeft:"13%"}}>Order Placed</h5>
-  </div>
-}
     </div>
-  );
+ }
+    </div>
+ );
 };
 
 export default PlaceOrder;

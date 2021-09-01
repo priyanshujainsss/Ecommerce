@@ -1,15 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import {fs} from './firebase';
+import { cartlength } from "./Redux/actions";
 const IndividualProduct = ({ products,user }) => {
   // console.log(products)
   
-
+const dispatch = useDispatch();
   const handleAddToCart=(product)=>{
 //  console.log(product);
 //  console.log(user)
 if(user){
- fs.collection(`Cart ${user}`).add({
+ fs.collection(`Cart ${user}`).doc(product.pid).set({
      ProductName:product.title,
      ProductPrize:product.prize,
      ProductDesc:product.description,
@@ -18,13 +20,13 @@ if(user){
 
  })
   .then(()=>{
-      console.log("product added")
+      console.log("product added");
+      fs.collection(`Cart ${user}`).get().then((total)=>dispatch(cartlength(total.docs.length))).catch(err=>console.log("failed to get length",err))
   })
   .catch(err=>{
       console.log(err)
   })
 
- 
 
 }
   else{

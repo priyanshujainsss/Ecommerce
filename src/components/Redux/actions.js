@@ -1,11 +1,21 @@
-export const isAuth=()=>({
+const isAuth=()=>({
     type:"ISAUTH"
 })
-export const login=(data)=>({
+const login=(data)=>({
     type:"LOGIN",
     payload:data
 })
-export const logout=(data)=>({
+const logout=(data)=>({
     type:"LOGOUT",
     payload:data
 })
+const cartlength=(length)=>({
+    type:"CARTLENGTH",
+    payload:length
+})
+const actionuserid=(id)=>({
+    type:"USERID",
+    payload:id
+})
+
+export {isAuth,login,logout,cartlength,actionuserid}

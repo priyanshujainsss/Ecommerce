@@ -16,13 +16,15 @@ import Navbar from "./components/Navbar";
 import Notfound from "./components/Notfound";
 import PlaceOrder from "./components/PlaceOrder";
 import Profile from "./components/Profile";
-import {login } from "./components/Redux/actions";
+import {cartlength, login,actionuserid } from "./components/Redux/actions";
 import Signup from "./components/Signup";
 import ProtectedRoute from "./ProtectedRoute";
 import UserContext from "./UserContext";
 const App = () => {
-  const isauth = useSelector(state => state.isAuthReducer)
+  const isauth = useSelector(state => state.isAuthReducer);
+  const storeuserid=useSelector(state=>state.userIdReducer);
   const  dispatch = useDispatch();
+
   const [user, setuser] = useState(null);
    const [userid, setuserid] = useState(null);
   const [useremail, setuseremail] = useState(null);
@@ -32,6 +34,8 @@ const App = () => {
     try {
      auth.onAuthStateChanged(function (user) {
         if (user) {
+          console.log(user)
+          dispatch(actionuserid(user.uid));
           dispatch(login(true))
           fs.collection("users")
             .doc(user.uid)
@@ -42,11 +46,12 @@ const App = () => {
               setshownav(true);
               setuser(snapshot.data());
               console.log("appjs")
-    
             })
             .catch((err) => {
               console.log("unable to retrieve", err);
             });
+            getCartLength();
+
         } else {
           setuser(null);
         }
@@ -57,9 +62,21 @@ const App = () => {
     }
   };
   // console.log(user)
+ const getCartLength=async()=>{
+   try{
+     console.log("storeuserid",storeuserid)
+     const totallength=await fs.collection(`Cart ${storeuserid.id}`).get();
+     dispatch(cartlength(totallength.docs.length));
+    }
+    catch(err){
+      console.log("failed to get length",err)
+    }
+  }
+
+
   useEffect(() => {
     getuserState();
-
+    // getCartLength(); 
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -67,9 +84,9 @@ const App = () => {
 
   return (
     <BrowserRouter>
-    {
+    {/* {
       console.log(isauth)
-    }
+    } */}
       <UserContext.Provider value={useremail}>
         <Navbar user={user} show={shownav}/>
         <Switch>
@@ -86,7 +103,6 @@ const App = () => {
             userid={userid}
           />
           <ProtectedRoute
-
             path="/profile"
             component={Profile}
             // isAuth={user}
@@ -94,7 +110,6 @@ const App = () => {
             user={useremail}
           />
           <ProtectedRoute
- 
             path="/addproduct"
             component={Addproduct}
             isAuth={isauth}
