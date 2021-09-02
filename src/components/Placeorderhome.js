@@ -65,7 +65,8 @@ else if(pvalue==="card"){
     seterrormsgupi("")
   }
 }
-
+else{
+  confirmOrder();
 
 }
 
