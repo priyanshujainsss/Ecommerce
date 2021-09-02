@@ -16,7 +16,8 @@ const Myorders = ({ userid }) => {
       const ProductArray = [];
       for (var snap of products.docs) {
         const data = snap.data();
-        ProductArray.push({ ...data, data });
+        const oid=snap.id;
+        ProductArray.push({ ...data, data,oid });
       }
       setloader(false)
       await setorders(ProductArray);
@@ -26,15 +27,23 @@ const Myorders = ({ userid }) => {
   };
   useEffect((props) => {
     getOrdersList()
+    checkingId();
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if(id!==userid){
-    return <Notfound />
+  const checkingId=async()=>{
+    try{
+      if(id!==userid){
+        return <Notfound />
+      }
+    }
+    catch(err){
+      console.log("Id checking err",err)
+    }
   }
   return (
     <div>
-      <div className="container" style={{ maxWidth: "600px" }}>
+      <div className="container" style={{ maxwidth: "600px" }}>
       {
           loader &&  <div style={{ textAlign:"center", margin:"20%"}} ><Loader 
           type="Grid"

@@ -36,7 +36,7 @@ const ProtectedRoute = ({isAuth, component:Component,userid,user, ...rest}) => {
         <Route 
         {...rest}
          component={(props)=>{
-             console.log(props)
+            //  console.log(props)
              if(isAuth){
                  console.log("if called")
                  return <Component {...props} userid={userid} user={user} />

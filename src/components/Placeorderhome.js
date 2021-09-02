@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 
+
 const Placeorderhome = ({
   handlePayment,
   payment,
@@ -32,7 +33,7 @@ const Placeorderhome = ({
 const handleCredentials=(e)=>{
  e.preventDefault();
  if(pvalue==="netbanking"){
-   if(netbankingid.current.value & netbankingpass.current.value){
+   if(netbankingid.current.value && netbankingpass.current.value){
      confirmOrder();
    }
    else{
@@ -56,8 +57,10 @@ const handleCredentials=(e)=>{
  }
 
 else if(pvalue==="card"){
-  if(c1.current.value & c2.current.value & c3.current.value & c4.current.value & cvv.current.value & date.current.value){
+  if(c1.current.value.length===4 && c2.current.value.length===4 && c3.current.value.length===4 && c4.current.value.length===4 && cvv.current.value.length===3 && date.current.value.length===4){
+    console.log("details filled")
     confirmOrder();
+ 
   }
   else{
     seterrormsgcard("Please Enter Complete Details");
@@ -65,7 +68,9 @@ else if(pvalue==="card"){
     seterrormsgupi("")
   }
 }
-
+else{
+  confirmOrder();
+}
 
 }
 
@@ -75,7 +80,7 @@ else if(pvalue==="card"){
         <label>Add a Delivery address</label>
         <textarea
           placeholder="Write delivery Address"
-          defaultValue={context.Address}
+          defaultValue={context? context.Address:null}
           required
         />
         <h5>Payment Method</h5>
@@ -105,6 +110,7 @@ else if(pvalue==="card"){
                   maxLength="4"
                   required
                   ref={c1}
+                  onChange={(e)=>e.target.value.length===4 ?c2.current.focus():c1.current.focus()}
                 />
                 <input
                   type="integer"
@@ -114,7 +120,7 @@ else if(pvalue==="card"){
                   maxLength="4"
                   required
                   ref={c2}
-
+                  onChange={(e)=>e.target.value.length===4 ?c3.current.focus():c2.current.focus()}
 
                 />
                 <input
@@ -125,7 +131,7 @@ else if(pvalue==="card"){
                   maxLength="4"
                   required
                   ref={c3}
-
+                  onChange={(e)=>e.target.value.length===4 ?c4.current.focus():c3.current.focus()}
                 />
                 <input
                   type="integer"
@@ -135,7 +141,7 @@ else if(pvalue==="card"){
                   maxLength="4"
                   required
                   ref={c4}
-
+                  onChange={(e)=>e.target.value.length===4 ?cvv.current.focus():c4.current.focus()}
                 />
               </p>
               <p>
@@ -147,7 +153,7 @@ else if(pvalue==="card"){
                   placeholder="CVV"
                   required
                   ref={cvv}
-
+                  onChange={(e)=>e.target.value.length===3?date.current.focus():cvv.current.focus()}
  />
                 <input
                   type="integer"
@@ -156,7 +162,7 @@ else if(pvalue==="card"){
                   style={{ width: "55px", margin: "1px 9px 3px 6px" }}
                   placeholder="MM/YY"
                   ref={date}
-
+                  onChange={(e)=>e.target.value.length!==4 ?date.current.focus():null}
                 />
               </p>
               {errormsgcard  && <p style={{color:"red", fontSize:"16px"}} >{errormsgcard}</p>}

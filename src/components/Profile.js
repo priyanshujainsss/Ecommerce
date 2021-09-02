@@ -135,14 +135,14 @@ const Profile = ({ user }) => {
         >
             <form
               onSubmit={handleProfileSubmit}
-            >
+              >
               {/* <input type="file" className="my-file" onChange={handleImg} /> */}
              {/* profile image div start */}
               <div
                   className="file-input"
                   style={{ display: "flex", flexDirection: "column" }}
                       > 
-                  <input type="file" className="file" id="file" />
+                  <input type="file" className="file" id="file" accept={'image/*'} />
 
                     <label htmlFor="file" onClick={handleClick} id="label">
                     <img src={imageurl} width="300" height="300" alt={"profile" }/>
@@ -158,7 +158,8 @@ const Profile = ({ user }) => {
                     id="name"
                     placeholder="Enter Your Name"
                     onChange={handleInputChange}
-                    value={profile.name}
+                    defaultValue={profile.name}
+                    // value={profile.name}
                     required
                   />
                 </div>
@@ -168,10 +169,12 @@ const Profile = ({ user }) => {
                     type="email"
                     className="form-control"
                     id="email"
-                    placeholder="Enter Emai id"
+                    placeholder="Enter Email id"
                     onChange={handleInputChange}
-                    value={profile.email}
-                    // disabled
+                    defaultValue={profile.email}
+                    // value={profile.email}
+
+                    disabled
                   />
                 </div>
                 <div className="form mb-2">
@@ -182,7 +185,8 @@ const Profile = ({ user }) => {
                     id="phone"
                     placeholder="Phone"
                     onChange={handleInputChange}
-                    value={profile.phone}
+                    defaultValue={profile.phone}
+                    maxLength={10}
                   />
                 </div>
                 <select
@@ -190,9 +194,9 @@ const Profile = ({ user }) => {
                   aria-label="Default select example"
                   id="gender"
                   onChange={handleInputChange}
-                  value={profile.gender}
-                >
-                  <option selected>Gender</option>
+                  defaultValue={profile.gender}
+                  >
+                  <option value="gender" >Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
@@ -204,7 +208,7 @@ const Profile = ({ user }) => {
                     id="dob"
                     placeholder="Password"
                     onChange={handleInputChange}
-                    value={profile.dob}
+                    defaultValue={profile.dob}
                   />
                 </div>
 
@@ -216,7 +220,7 @@ const Profile = ({ user }) => {
                     id="address"
                     placeholder="Enter your address"
                     onChange={handleInputChange}
-                    value={profile.address}
+                    defaultValue={profile.address}
                   />
                 </div>
 

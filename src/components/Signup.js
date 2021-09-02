@@ -16,7 +16,13 @@ const Signup = ({user}) => {
                 Id:response.user.uid,
                 FullName:fname,
                 Email:email,
-                password:password
+                password:password,
+                Address:'',
+                Phone: '',
+                Gender: '',
+                DOB:'',
+                Url:''
+
              })
              seterrmsg("")
              setsuccessmsg("Successfull Signup, Now you are redirecting to login page");

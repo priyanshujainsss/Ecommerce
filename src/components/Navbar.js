@@ -3,16 +3,25 @@ import { Link} from 'react-router-dom';
 import "./Navbar.css";
 import UserContext from "../UserContext";
 import { auth } from './firebase';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from './Redux/actions';
 
 
 
 const Navbar = ({user,show}) => {
   const context = useContext(UserContext);
+  const dispatch = useDispatch()
   const state = useSelector(state => state.cartLengthReducer)
-  const handleLogout = () => {
-    auth.signOut();
-    window.location.replace("/login");
+  const handleLogout = async() => {
+    try{
+
+      await auth.signOut();
+      dispatch(logout(false));
+      window.location.replace("/login");
+    }
+    catch(err){
+      console.log("failed to logout",err)
+    }
   };
   
   const [isMobile, setisMobile] = useState(false)

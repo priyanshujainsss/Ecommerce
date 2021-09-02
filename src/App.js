@@ -9,6 +9,7 @@ import {
 import Addproduct from "./components/addproduct";
 import Cart from "./components/Cart";
 import { auth, fs } from "./components/firebase";
+import ForgotPassword from "./components/ForgotPassword";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Myorders from "./components/Myorders";
@@ -41,6 +42,7 @@ const App = () => {
             .doc(user.uid)
             .get()
             .then((snapshot) => {
+              console.log(snapshot.data())
               setuserid(user.uid);
               setuseremail(snapshot.data());
               setshownav(true);
@@ -93,7 +95,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={() => <Login user={user} />} />
           <Route exact path="/signup" component={() => <Signup user={user} />} />
-         {/* <Route exact path="/cart" component={()=><Cart userid={userid} />} /> */}
+         <Route exact path="/forgotPassword" component={()=> <ForgotPassword user={user} />} />
        
           <ProtectedRoute
             path="/cart"
