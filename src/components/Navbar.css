@@ -16,7 +16,7 @@
 }
 .logo{
     margin-left: 20px;
-    width: 40%;
+    /* width: 40%; */
     height: 55px;
 }
 .nav-links{
@@ -46,9 +46,9 @@
     .logo{
        display: flex;
        position: absolute;
-       /* top: 15px; */
+       top: 15px;
        left:0px;
-       width:200px
+       /* width:200px */
     }
     .nav-links{
         display: none;
