@@ -21,7 +21,7 @@ const Signup = ({user}) => {
                 Phone: '',
                 Gender: '',
                 DOB:'',
-                Url:''
+                Url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt5NR3To1fH236wY3CMf5i9ak2Sj22p8VMdMppvtAtZ6T3Jtsw4u62qhaf-0l5tnbcYrw&usqp=CAU'
 
              })
              seterrmsg("")

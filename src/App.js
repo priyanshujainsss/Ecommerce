@@ -25,10 +25,8 @@ const App = () => {
   const isauth = useSelector(state => state.isAuthReducer);
   const storeuserid=useSelector(state=>state.userIdReducer);
   const  dispatch = useDispatch();
-
-  const [user, setuser] = useState(null);
    const [userid, setuserid] = useState(null);
-  const [useremail, setuseremail] = useState(null);
+  const [userDetails, setuserDetails] = useState(null);
   const [shownav, setshownav] = useState(false);
   
   const getuserState = async () => {
@@ -44,9 +42,8 @@ const App = () => {
             .then((snapshot) => {
               console.log(snapshot.data())
               setuserid(user.uid);
-              setuseremail(snapshot.data());
+              setuserDetails(snapshot.data());
               setshownav(true);
-              setuser(snapshot.data());
               console.log("appjs")
             })
             .catch((err) => {
@@ -55,10 +52,10 @@ const App = () => {
             getCartLength();
 
         } else {
-          setuser(null);
+          setuserDetails(null)
         }
       });
-      return user;
+      return userDetails;
     } catch (err) {
       console.log(err);
     }
@@ -89,13 +86,17 @@ const App = () => {
     {/* {
       console.log(isauth)
     } */}
-      <UserContext.Provider value={useremail}>
-        <Navbar user={user} show={shownav}/>
+      <UserContext.Provider value={userDetails}>
+        {/* {
+        console.log("userid",userid),
+        console.log("userDetails",userDetails)
+        } */}
+        <Navbar user={userDetails} show={shownav}/>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={() => <Login user={user} />} />
-          <Route exact path="/signup" component={() => <Signup user={user} />} />
-         <Route exact path="/forgotPassword" component={()=> <ForgotPassword user={user} />} />
+          <Route exact path="/login" component={() => <Login user={userDetails} />} />
+          <Route exact path="/signup" component={() => <Signup user={userDetails} />} />
+         <Route exact path="/forgotPassword" component={()=> <ForgotPassword user={userDetails} />} />
        
           <ProtectedRoute
             path="/cart"
@@ -109,7 +110,7 @@ const App = () => {
             component={Profile}
             // isAuth={user}
             isAuth={isauth}
-            user={useremail}
+            user={userDetails}
           />
           <ProtectedRoute
             path="/addproduct"

@@ -29,6 +29,7 @@ const Navbar = ({ user, show }) => {
           <img
             className="logo"
             src={logo}
+            height="100%"
            
             // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUVSxbETkWutHOuav5vb4dZ5VGD1ERFXZcIXVl7WWlkrU0Sc2EvsMKYURuV_eaz_cTgik&usqp=CAU"
             alt="logo"

@@ -65,7 +65,7 @@ const PlaceOrder = ({ userid }) => {
       setTimeout(() => {
         history.push("/");
       }, 4000);
-    }, 1000);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -108,17 +108,14 @@ const PlaceOrder = ({ userid }) => {
       }
 
       {confirmModal && (
-        <div class="modal-body container" style={{ maxWidth: "400px" }}>
+        <div class="modal-body container" style={{ maxWidth: "400px", padding: "3rem" }}>
           <img
             src="https://www.teleentrega.net/assets/img/order-placed.gif"
             alt="order placed"
           />
           <h5
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              marginLeft: "15%",
+              textAlign:"center", fontSize:"3.25rem"
             }}
           >
             Order Placed
