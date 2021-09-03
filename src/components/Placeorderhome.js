@@ -70,7 +70,10 @@ else if(pvalue==="card"){
 }
 else{
   confirmOrder();
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 9a8c1be7e616974e725c1dd371136f5c963828f1
 
 }
 
